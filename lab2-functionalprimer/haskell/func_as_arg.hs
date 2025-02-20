@@ -1,9 +1,14 @@
 --create inpFunc
-inpFunc = [1..5] 
+inpFunc a b = [a..b] 
 
 --Define applicatorFunc
-applicatorFunc inpFunc s = if s=='s' then sum inpFunc else (sum inpFunc)/5  
+applicatorFunc inp s = 
+    if s == 's' 
+        then fromIntegral (sum inp) 
+        else fromIntegral (sum inp) / fromIntegral (length inp)
 
 main = do
-    let result = applicatorFunc inpFunc 'a' --Call applicatorFunc with inpFunc and 'a' as args
-    putStrLn("sum = " ++ show(result))
+    let a = 3
+    let b = 7
+    let result = applicatorFunc (inpFunc a b) 'a'  -- Call applicatorFunc with [a..b] and 'a'
+    putStrLn ("Result = " ++ show result)
