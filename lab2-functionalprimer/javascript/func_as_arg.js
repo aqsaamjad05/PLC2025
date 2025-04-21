@@ -1,24 +1,28 @@
-//Create list of ints from 1 to 5, Haskell equivalent [1..5]
-function arrFunc(){
+// Create array from a to b, similar to [a..b] in Haskell
+function arrFunc(a, b){
     let arr = [];
-    for (let i = 1; i<=5; i++) {
+    for (let i = a; i <= b; i++) {
         arr.push(i);
     }
     return arr;    
 }
 
-function applicatorFunc(inpFunc, s){
-    if(s=='s'){
-        const arr = inpFunc();        
-        let sum = arr.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+// Takes a, b, and a selector char ('s' for sum, otherwise average)
+function applicatorFunc(a, b, s){
+    const arr = arrFunc(a, b);
+    let sum = arr.reduce((acc, curr) => acc + curr, 0);
+    
+    if(s === 's'){
         return sum;
-    }
-    else{        
-        const arr = inpFunc();
-        let sum = arr.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-        return sum/5;
+    } else {
+        return sum / arr.length;
     }
 }
 
-let x = applicatorFunc(arrFunc, 's');
-console.log(x);
+// Example usage:
+let a = 3;
+let b = 10;
+let operation = 'a'; // 's' for sum, anything else for average
+
+let result = applicatorFunc(a, b, operation);
+console.log("Result:", result);
